@@ -1,0 +1,83 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+% Dimensions
+\usepackage[top=2cm, bottom=2cm, left=1.8cm, right=1.8cm, columnsep=20pt]{geometry}
+
+% graphiques
+\usepackage{graphicx}
+
+% PACKAGES
+%\usepackage{karnaugh-map}
+\usepackage{booktabs}
+%\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+%\usepackage{slashbox}
+\usetikzlibrary{automata,positioning, graphs, graphs.standard,trees}
+
+\newcommand{\tens}[1]{%
+	\mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\center
+	
+	\vspace*{2cm}
+	
+	\textsc{\LARGE Université de Montréal}\\[1cm] 
+	\textsc{\Large IFT 3205 - Traitement du Signal}\\[1.5cm] 
+	
+	\rule{\linewidth}{0.5mm} \\[0.5cm]
+	{\LARGE \bfseries TP1} \\[0.2cm] % ***éditez ceci***
+	\rule{\linewidth}{0.5mm} \\[3cm]
+	
+	\large par: \\*
+	André Lalonde \\*
+	(20024885) \\*[2cm]
+	{\large \today}\\[3cm]
+	
+	\vfill
+\end{titlepage}
+\newpage
+\flushleft
+\par{
+\textbf{Question 1.1} \\*[3mm]
+Le code fournis s'occupe déja d'effectuer les opérations demandés. Il s'agis ici simplement de la compréhension du code dans FonctionDemo1.c. \\*[3mm]
+\textbf{Question 1.2}
+L'implémentation est vue dans la fonction CenterIMG du fichier TpIFT3205-2-1b.c. \\*[3mm]
+\textbf{Question 1.3} \\*[3mm]
+Le centre de l'image constitue la moyenne de l'image. La ligne verticale qui traverse ce point est causé par les grands contrastes de l'image. \\*[3mm]
+\textbf{Question 1.4} \\*[3mm]
+Pour D1r.pgm, on a la discontinuité horizontale qui est symbolisé par les lignes verticales du spectre. Le phénomène se produit car la composante verticale est moins forte que la composante horizontale de l'image de base. \\*[2mm]
+Pour D11r.pgm, on a la discontinuité vertical qui est symbolisé par les lignes horizontales du spectre. Le phénomène se produit car la composante horizontale est moins forte que la composante verticale de l'image de base. \\*[2mm]
+Pour D46r.pgm, on a la discontinuité diagonale qui est symbolisé par les lignes diagonales du spectre. \\*[3mm]
+\textbf{Question 2.1} \\*[3mm]
+a) On viens chercher les contours des formes. \\*[1mm]
+b) Je ne comprends pas cette tâche floue. Il est possible que mon code ait une erreur. \\*[1mm]
+c) Les couleurs ont été uniformiser entre les formes. \\*[1mm]
+d) Un décalage horizontale se forme. \\*[1mm]
+e) Un décalage verticale se forme. \\*[3mm]
+\textbf{Question 2.2} \\*[3mm]
+Manquant d'inspiration, l'image semble avoir peu de fréquences de très hautes intensité et incliné. Il suffit donc de trouver la distance euclidienne en u et en v qu'il faut conserver pour obtenir l'image résultante. \\*[3mm]
+\textbf{Question 3.1} \\*[3mm]
+Cette image a été construite en superposant deux images dont les fréquences ont été séparés. On a tout d'abord utiliser les basse fréquences d'une photo de qui je crois ressemble à Marilyn Monroe, puis on y a ajouter les hautes fréquences d'une photo de Albert Einstein. Pour ce faire à partir des images complètes, il suffit d'appliquer la transformer de fourier sur les deux images, mettre à 0 les valeurs des fréquences qui dépassent un certain point de l'image de Monroe, mettre à 0 les valeurs des fréquences qui sont en dessous d'un certain point de l'image d'Einstein, de combiner les spectres puis de faire la transformée inverse de Fourier pour retrouver l'image présente avec les nouvelles fréquences. \\*[3mm]
+\textbf{Question 3.2} \\*[3mm]
+Du même principe qu'utiliser pour la question 2.1a, on peut soutirer ici les outlines du visage d'Einstein demandé. Puisque l'on a créer l'image à partir de superposition des deux images de base, il suffit dès lors de faire la négation pour prendre les autres valeurs et donner l'image plus loin.
+
+\end{document}
