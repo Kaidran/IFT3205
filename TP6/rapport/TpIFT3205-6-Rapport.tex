@@ -1,0 +1,69 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+% Dimensions
+\usepackage[top=2cm, bottom=2cm, left=1.8cm, right=1.8cm, columnsep=20pt]{geometry}
+
+% graphiques
+\usepackage{graphicx}
+
+% PACKAGES
+%\usepackage{karnaugh-map}
+\usepackage{booktabs}
+%\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+%\usepackage{slashbox}
+\usetikzlibrary{automata,positioning, graphs, graphs.standard,trees}
+
+\newcommand{\tens}[1]{%
+	\mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\center
+	
+	\vspace*{2cm}
+	
+	\textsc{\LARGE Université de Montréal}\\[1cm] 
+	\textsc{\Large IFT 3205 - Traitement du Signal}\\[1.5cm] 
+	
+	\rule{\linewidth}{0.5mm} \\[0.5cm]
+	{\LARGE \bfseries TP6} \\[0.2cm] % ***éditez ceci***
+	\rule{\linewidth}{0.5mm} \\[3cm]
+	
+	\large par: \\*
+	André Lalonde \\*
+	(20024885) \\*[2mm]
+	Jessica Gauvin \\*
+	(20075524) \\*[2cm]
+	{\large \today}\\[3cm]
+	
+	\vfill
+\end{titlepage}
+\newpage
+\flushleft
+\par{\textbf{Question 2.1b} \\*[5mm]
+En utilisant le Techantillonnage de 11025 échantillons/secondes sur les 8192 échantillons du moteur1, on déduit à partir du pic situé à l'index \textbf{145} un tour par minute (tpm) de \textbf{5854}. \\*[5mm]
+\textbf{Question 2.2} \\*[5mm]
+Suivant ce que l'on a ci-dessus, on obtiens à l'aide de l'index du clic \textbf{144} la fréquence voulue soit \textbf{76.5625}. \\*[5mm]
+\textbf{Question 3.4} \\*[5mm]
+En analysant les spectres de façon séquentielle, on remarque que chaque technique employé se rapproche de plus en plus d'un signal simple. Les algorithmes utilisés sont donc de plus en plus efficace pour réduire le bruit.
+}
+\end{document}
