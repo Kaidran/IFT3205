@@ -1,0 +1,72 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{hyperref}
+
+% Dimensions
+\usepackage[top=2cm, bottom=2cm, left=1.8cm, right=1.8cm, columnsep=20pt]{geometry}
+
+% graphiques
+\usepackage{graphicx}
+
+% PACKAGES
+%\usepackage{karnaugh-map}
+\usepackage{booktabs}
+%\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
+%\usepackage{slashbox}
+\usetikzlibrary{automata,positioning, graphs, graphs.standard,trees}
+
+\newcommand{\tens}[1]{%
+	\mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\center
+	
+	\vspace*{2cm}
+	
+	\textsc{\LARGE Université de Montréal}\\[1cm] 
+	\textsc{\Large IFT 3205 - Traitement du Signal}\\[1.5cm] 
+	
+	\rule{\linewidth}{0.5mm} \\[0.5cm]
+	{\LARGE \bfseries TP3} \\[0.2cm] % ***éditez ceci***
+	\rule{\linewidth}{0.5mm} \\[3cm]
+	
+	\large par: \\*
+	André Lalonde \\*
+	(20024885) \\*[2mm]
+	Jessica Gauvin \\*
+	(20075524) \\*[2cm]
+	{\large \today}\\[3cm]
+	
+	\vfill
+\end{titlepage}
+\newpage
+\flushleft
+\par{
+\textbf{Question 2.2} \\*[3mm]
+Bien que je ne trouves pas l'endroit dans les notes de cours qui explicite cette réponse, l'énoncé nous explique la correspondance de la notion du noyau. Puisque ceci est une fonction qui se multiplies aux pixels pour réaliser l'interpolation et qu'elle équivaut à une convolution d'un noyau et que le coefficient de normalisation d'une convolution est inversement proportionnel à la somme des coefficients de sa matrice, alors le facteur de normalisation du noyau, par déduction logique, devrait équivaloir à $\frac{1}{\Sigma k_i}$ avec $k_n$ les coefficients du noyau. \\*[5mm] 
+\textbf{Question 2.3} \\*[3mm]
+Le Zero-Padding devrait convenir. Compliments à ce site \href{www.bitweenie.com/lisings/fft-zero-padding/}{fft-zero-padding}. \\*[5mm]
+\textbf{Question 3.3} \\*[3mm]
+Le hard thresholding simplifie l'image en gardant uniquement les fréquences dominantes de l'image. On peut ensuite remplacer les bouts en utilisant l'interpolation d'une IFFT. Les fenêtres permettrent d'obtenir une approximation de mieux en mieux à chaque itération. \\*[5mm]
+\textbf{Question 4.1} \\*[3mm]
+La technique utilisé est asser simple. D'abord, tel que suggéré dans l'énoncé, on extrapole de nouvelles lignes ayant une moyenne de couleur des colonnes. Puis, on reprend la technique utiliser en 3.1-3.2, cette fois-ci avec la DFT prenant des images de toutes tailles, suivie d'un enclos pour ré-initialiser les pixels négatif ou supérieur à 255.
+}
+\end{document}
