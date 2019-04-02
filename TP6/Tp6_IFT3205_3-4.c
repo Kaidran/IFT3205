@@ -76,6 +76,7 @@ int main(int argc,char **argv)
   printf(" %s",BufSystVisuSig);
   system(BufSystVisuSig);
 
+  sleep(2);
   // hamming off
   averageSampling(Sign2, Echantillons, EchantillonsI, 
                   EMoyens1, EMoyens1I, 
@@ -84,14 +85,14 @@ int main(int argc,char **argv)
   ModVct(EMoyens1M,EMoyens1,EMoyens1I,samplesize);
   CenterVct(EMoyens1M,samplesize);
   SaveSignalDat("FFT_Spectre_PermMoy",EMoyens1M,samplesize);  
-   
+
   //Visu
   strcpy(BufSystVisuSig,NAME_VISUALISER);
   strcat(BufSystVisuSig,"FFT_Spectre_PermMoy.dat&");
   printf(" %s",BufSystVisuSig);
   system(BufSystVisuSig);
 
-
+  sleep(2);
   // hamming on
   averageSampling(Sign2, Echantillons, EchantillonsI, 
                   EMoyens2, EMoyens2I, 
@@ -191,7 +192,7 @@ void averageSampling(float* datMat,
 
 float hammingWindow(int t, int T) {
   if (t >= 0 && t <= T)
-    return 0.54 - 0.46 * cos(2*PI * t/T);
+    return 0.54 - 0.46 * cos(2*PI * (float)t/(float)T);
   else
     return 0;
 }
