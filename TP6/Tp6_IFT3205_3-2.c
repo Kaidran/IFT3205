@@ -44,8 +44,6 @@ int main(int argc,char **argv)
   //Question 2.1.(a)
   //===============================
   float*  Sign1=LoadSignalDat("moteur2",&length);
-  float*  Sign1I=fmatrix_allocate_1d(length);
-  float*  Sign1M=fmatrix_allocate_1d(length);
   float*  Echantillons=fmatrix_allocate_1d(samplesize);
   float*  EchantillonsI=fmatrix_allocate_1d(samplesize);
   float*  EMoyens=fmatrix_allocate_1d(samplesize);
@@ -135,12 +133,12 @@ void averageSampling(float* datMat,
     
     for (j=0; j<samplesize; j++) {
       matMoy[j] += fabs(mat1[j]);
-      matMoyI[j] += fabs(mat1[j]);
+      matMoyI[j] += fabs(mat1I[j]);
     }
   }
-  int samplecount = length / step;
-  for (j=0; j<samplesize; j++) {
-    matMoy[j] /= samplecount;
-    matMoyI[j] /= samplecount;
-  }
+//  int samplecount = 1.0;
+//  for (j=0; j<samplesize; j++) {
+//    matMoy[j] /= samplecount;
+//    matMoyI[j] /= samplecount;
+//  }
 }

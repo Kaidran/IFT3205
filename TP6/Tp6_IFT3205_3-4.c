@@ -180,16 +180,17 @@ void averageSampling(float* datMat,
     
     for (j=0; j<samplesize; j++) {
       matMoy[j] += fabs(mat1[j]);
-      matMoyI[j] += fabs(mat1[j]);
+      matMoyI[j] += fabs(mat1I[j]);
     }
   }
-  int samplecount = length / step;
+  int samplecount = 1;
   for (j=0; j<samplesize; j++) {
     matMoy[j] /= samplecount;
     matMoyI[j] /= samplecount;
   }
 }
 
+/* fenetre de hamming selon un temps t sur un echantillon total T */
 float hammingWindow(int t, int T) {
   if (t >= 0 && t <= T)
     return 0.54 - 0.46 * cos(2*PI * (float)t/(float)T);

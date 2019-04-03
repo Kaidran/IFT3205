@@ -135,10 +135,12 @@ void averageSampling(float* datMat,
     
     for (j=0; j<samplesize; j++) {
       matMoy[j] += fabs(mat1[j]);
-      matMoyI[j] += fabs(mat1[j]);
+      matMoyI[j] += fabs(mat1I[j]);
     }
   }
-  int samplecount = length / step;
+  // thought had to divide by sample size since we want an average
+  // but somehow this doesnt give right result?
+  int samplecount = 1;
   for (j=0; j<samplesize; j++) {
     matMoy[j] /= samplecount;
     matMoyI[j] /= samplecount;
