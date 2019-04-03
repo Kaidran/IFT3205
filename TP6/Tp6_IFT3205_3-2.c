@@ -136,9 +136,9 @@ void averageSampling(float* datMat,
       matMoyI[j] += fabs(mat1I[j]);
     }
   }
-//  int samplecount = 1.0;
-//  for (j=0; j<samplesize; j++) {
-//    matMoy[j] /= samplecount;
-//    matMoyI[j] /= samplecount;
-//  }
+  int samplecount = length / step;
+  for (j=0; j<samplesize; j++) {
+    matMoy[j] /= samplecount;
+    matMoyI[j] /= samplecount;
+  }
 }
