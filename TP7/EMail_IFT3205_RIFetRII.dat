@@ -1,0 +1,48 @@
+
+----------------------------------
+---- TP no 9 ---------------------
+----------------------------------
+
+Creer un repertoire TP7 et copier les differents progs dans ce repertoire
+  
+Le programme Tp9_IFT3205_2.c 
+creera un signal d'entrée x(n) de 256 échantillons aléatoire compris entre 
+[0::200] et affichera le signal à l'écran (SignalX.dat et SignalX.eps)
+(utile pour la suite du TP)
+
+et creera/sauvegardera SignZ (30000 echantillons 
+aléatoire entre [0::200]) dans un fichier .wav avec une periode 
+d'echantillonnage de 10000: Nb echant/secondes
+(pour 3 secondes d'écoute) en utilisant la fonction 
+"SaveSignalDatWav" 
+(utile pour creer les fichier .wav demandé
+dans la suite de ce TP)
+
+Bon Tp,
+Max
+
+ 
+=========
+Conseils
+========
+
+Ps: Si le fichier viewsig.sh ne marche pas alors 
+faites:
+mv  ViewSig.txt  ViewSig.sh
+chmod 700 viewsig.sh
+
+
+-------------
+
+
+
+
+
+
+
+
+ 
+
+
+
+
