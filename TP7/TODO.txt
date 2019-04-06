@@ -1,0 +1,46 @@
+
+     Tp7_IFT3205_1.c [COMPLET]
+     Affichant à l'écran le signal de sortie généré par le filtre pour les 
+     256 premiers échantillons
+     >SignalY.eps [GÉNÉRÉ PAR .C]
+   
+     [10 pts] 
+     Creation de  >SoundFile.eps [COMPLET]
+
+     [20 pts]
+     Tp7_IFT3205_2-2.c [COMPLET]
+     Creant la degradation parasite sur SounFile.dat et creation de
+     >SoundFileDeg.wav [GÉNÉRÉ PAR .C]
+     >SoundFileDeg.dat [GÉNÉRÉ PAR .C]
+     >SoundFileDeg.eps [GÉNÉRÉ PAR .C]
+
+     [20 pts]
+     Tp7_IFT3205_2-3.c [À FAIRE]
+     Créant la restoration du signal dégradé
+     >SoundFileRest.wav [GÉNÉRÉ PAR .C]
+     >SoundFileRest.dat [GÉNÉRÉ PAR .C]
+     >SoundFileRest.eps [GÉNÉRÉ PAR .C]
+
+     [10 pts]
+     Tp7_IFT3205_3-1.c [COMPLET]
+     Simulant la sortie du canal pour les 10 premier echantillons du style
+     Reponse-Dirac:: [1.0000][-2.3333][0.6666][0.0000][0.0000][0.0000]
+     Reponse-Echelon:: [1.0000][-1.3333][-0.6667][-0.6667][-0.6667][-0.6667]
+
+     [10 pts]
+     Tp7_IFT3205_3-2.c [À TERMINER: calcul de la RSB]
+     Simulant la sortie du canal sur SounFile.dat
+     >SoundFileInCanal.wav [GÉNÉRÉ PAR .C]
+     >SoundFileInCanal.dat [GÉNÉRÉ PAR .C]
+     >SoundFileInCanal.eps [GÉNÉRÉ PAR .C]
+     et calculant le RSB
+     RSB=[-4.95 dB]
+     
+     [20 pts]
+     Tp7_IFT3205_3-3.c [À FAIRE]
+     Simulant la sortie du canal sur SounFile.dat
+     >SoundFileInCanalRestor.wav [GÉNÉRÉ PAR .C]
+     >SoundFileInCanalRestor.dat [GÉNÉRÉ PAR .C]
+     >SoundFileInCanalRestor.eps [GÉNÉRÉ PAR .C]
+     et calculant le RSB
+     RSB=[1.38 dB]

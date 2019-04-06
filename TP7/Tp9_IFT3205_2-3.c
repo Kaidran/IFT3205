@@ -1,5 +1,5 @@
 /*------------------------------------------------------*/
-/* Prog    : Tp9_IFT3205_1.c                            */
+/* Prog    : Tp9_IFT3205_2-3.c                          */
 /* Auteur  : Jessica Gauvin & Andre Lalonde             */
 /* Date    : 10/04/2010                                 */
 /* version :                                            */
@@ -26,16 +26,8 @@
 /*------------------------------------------------*/
 /* PROTOTYPE DE FONCTIONS  -----------------------*/   
 /*------------------------------------------------*/
-float CARRE(float x){
+float carre(float x){
   return x*x;
-}
-
-void filtreI(float* SignX, float* SignY, int length, float rho, float theta){
-  SignY[0] = SignX[0];
-  SignY[1] = SignX[1]-SignX[0]+2*rho*cos(theta)*SignY[0];
-
-  for(int i = 2; i<length; i++)
-    SignY[i] = SignX[i]-SignX[i-1]+2*rho*cos(theta)*SignY[i-1]-CARRE(rho)*SignY[i-2];
 }
 
 /*------------------------------------------------*/
@@ -46,31 +38,26 @@ int main(int argc,char **argv)
   int i,j;
   char BufSystVisuSig[100];
   int length;
+  int sampleRate = 11025;
+
+  const float pi = 3.141593;
+  const float rho = 0.99;
+  const float theta = 2.0*pi*f0;
 
   //===============================
-  //Question 1
+  //Question 2-3
   //===============================
+   float*  Sign1=LoadSignalDat("SoundFileDeg",&length);
 
-   length=256;
-   float*  SignX=fmatrix_allocate_1d(length);
-   float*  SignY=fmatrix_allocate_1d(length);
-
-   const float pi = 3.141593;
-   const float rho = 0.99;
-   const float theta = pi/8;
+   //TODO: Restaurer le signal
   
-   //Signal d'entré  x(n) aléatoire compris entre [0::200]
-   for(i=0;i<length;i++) SignX[i]=(int)(((float)rand()/RAND_MAX)*200.0);
-
-    filtreI(SignX, SignY, length, rho, theta);
-
    //Sauvegarde en fichier .dat
-   //SaveSignalDat("SignalX",SignX,length); 
-   SaveSignalDat("SignalY",SignY,length);
+   SaveSignalDatWav("SoundFileRest",Sign1,length, sampleRate);
+   SaveSignalDat("SoundFileRest",Sign1,length);
 
    //Visu Ecran
    strcpy(BufSystVisuSig,NAME_VISUALISER);
-   strcat(BufSystVisuSig,"SignalY.dat&");
+   strcat(BufSystVisuSig,"SoundFileRest.dat&");
    printf(" %s",BufSystVisuSig);
    system(BufSystVisuSig);
 
