@@ -30,6 +30,17 @@ float carre(float x){
   return x*x;
 }
 
+void restore(float* restore, float* degrad, float length, float rho, float theta){
+  restore[0] = degrad[0];
+  restore[1] = degrad[1] - 2*cos(theta)*degrad[0] + 2*rho*cos(theta)*restore[0];
+
+  for(int i=2; i<length; i++)
+    restore[i] = degrad[i] - 2*cos(theta)*degrad[i-1] + degrad[i-2] 
+    + 2*rho*cos(theta)*restore[i-1] - carre(rho)*restore[i-2];
+}
+
+
+
 /*------------------------------------------------*/
 /* PROGRAMME PRINCIPAL   -------------------------*/                     
 /*------------------------------------------------*/
@@ -42,18 +53,23 @@ int main(int argc,char **argv)
 
   const float pi = 3.141593;
   const float rho = 0.99;
+  const float f0 = 500.0 / sampleRate;
   const float theta = 2.0*pi*f0;
 
   //===============================
   //Question 2-3
   //===============================
-   float*  Sign1=LoadSignalDat("SoundFileDeg",&length);
+   float*  Sign=LoadSignalDat("SoundFileDeg",&length);
+   float* SignRestore=fmatrix_allocate_1d(length);
+
+   restore(SignRestore, Sign, length, rho, theta);
+
 
    //TODO: Restaurer le signal
   
    //Sauvegarde en fichier .dat
-   SaveSignalDatWav("SoundFileRest",Sign1,length, sampleRate);
-   SaveSignalDat("SoundFileRest",Sign1,length);
+   SaveSignalDatWav("SoundFileRest",SignRestore,length, sampleRate);
+   SaveSignalDat("SoundFileRest",SignRestore,length);
 
    //Visu Ecran
    strcpy(BufSystVisuSig,NAME_VISUALISER);
