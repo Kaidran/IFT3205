@@ -51,8 +51,12 @@ float rsbCalculation(float* original, float* modified, int length){
     num += CARRE(original[i]);
     denum += CARRE(original[i] - modified[i]);
   }
+  // normalizing
+  num = sqrt(num);
+  denum = sqrt(denum);
 
-  return num/denum;
+  // returning decibel, ratio/log(10)
+  return 20*(log((num/denum))/log(10));
 }
 
 void showRsbResult(float rsb, char* message){

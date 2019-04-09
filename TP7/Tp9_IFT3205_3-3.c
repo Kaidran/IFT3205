@@ -30,11 +30,21 @@ float CARRE(float x){
   return x*x;
 }
 
-float rsbCalculation(float* Sign, int length){
+float rsbCalculation(float* original, float* modified, int length){
   //TODO
-  float rsb = 0;
+  float num = 0;
+  float denum = 0;
 
-  return rsb;
+  for(int i=0;i<length;i++){
+    num += CARRE(original[i]);
+    denum += CARRE(original[i] - modified[i]);
+  }
+  // normalizing
+  num = sqrt(num);
+  denum = sqrt(denum);
+
+  // returning decibel, ratio/log(10)
+  return 20*(log((num/denum))/log(10));
 }
 
 void showRsbResult(float rsb, char* message){
@@ -52,7 +62,11 @@ void restoreCanal(float* Sign, float* SignResult, int length){
 
 
   for(int i = 3; i<length; i++){
-    SignResult[i] = -Sign[i]/2.0+Sign[i-1]+17.0/6.0*SignResult[i-1]-11.0*SignResult[i-2]/6.0+SignResult[i-3]/3.0;
+    SignResult[i] = -1/2.0 * Sign[i]
+                    +Sign[i-1]
+                    +17.0/6.0*SignResult[i-1]
+                    -11.0/6.0*SignResult[i-2]
+                    +1.0/3.0*SignResult[i-3];
     //printf("%d. result: %f\n",i, SignResult[i] );
   }
 }
@@ -70,13 +84,15 @@ int main(int argc,char **argv)
   //===============================
   //Question 1
   //===============================
-   float*  Sign=LoadSignalDat("SoundFileInCanal",&length);
+   float* Sign=LoadSignalDat("SoundFileInCanal",&length);
    float* SignRestore=fmatrix_allocate_1d(length);
-
+   for (i=0; i < length; i++) {
+    SignRestore[i] = 0;
+   }
    restoreCanal(Sign, SignRestore, length);
 
 
-   showRsbResult(rsbCalculation(SignRestore, length), "RSB=");
+   showRsbResult(rsbCalculation(Sign, SignRestore, length), "RSB=");
 
    SaveSignalDatWav("SoundFileInCanalRestor",SignRestore,length, sampleRate);
    SaveSignalDat("SoundFileInCanalRestor",SignRestore,length);
