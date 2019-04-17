@@ -46,12 +46,12 @@ int main(int argc,char **argv)
   //  
   //=================================================
 
-  //float*  SignX=LoadSignalDat("SOUND_GoodMorningVietnam",&length);
+  float*  SignX=LoadSignalDat("SOUND_GoodMorningVietnam",&length);
   float*  SignY=fmatrix_allocate_1d(length);
   float*  bb=fmatrix_allocate_1d(length);
   
    for(n=0;n<length;n++) {
-        bb[n] = rand()/(float)RAND_MAX * 2 - 1;
+        bb[n] = (rand()/(float)RAND_MAX) * 2 - 1;
     }
   //--------------------------------
   //Restauration  Équation Récurente
@@ -64,10 +64,12 @@ int main(int argc,char **argv)
   float G=0.9;
   int   Retard=14;
 
-  for(n=0;n<length;n++)
-     {                 SignY[n]= bb[n];
-     if (n>(Retard-1)) SignY[n]+= G*bb[n-Retard]; }
-
+  for(n=0;n<length;n++) {
+    SignY[n]= bb[n];
+    if (n>(Retard-1)) 
+      SignY[n]+= G*bb[n-Retard];
+    SignY[n] = SignY[n] * 0.1;
+   }
 
    //Sauvegarde
    SaveSignalDatWav("SignalOut4",SignY,length,SamplingRate); 
