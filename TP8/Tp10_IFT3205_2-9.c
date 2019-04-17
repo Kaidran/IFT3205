@@ -1,7 +1,7 @@
 /*------------------------------------------------------*/
-/* Prog    : Tp10_IFT3205_2-1.c                         */
+/* Prog    : Tp10_IFT3205_2-9.c                         */
 /* Auteur  : Andre Lalonde - Jessica Gauvin             */
-/* Date    : 08/04/2019                                 */
+/* Date    : 14/04/2019                                 */
 /* version : 1.0                                        */ 
 /* langage : C                                          */
 /* labo    : DIRO                                       */
@@ -22,10 +22,21 @@
 /*------------------------------------------------*/
 #define NAME_VISUALISER_IMG "./display "
 #define NAME_VISUALISER     "./ViewSig.sh "
-
+#define CARRE(X) ((X)*(X))
 /*------------------------------------------------*/
 /* PROTOTYPE DE FONCTIONS  -----------------------*/   
 /*------------------------------------------------*/
+
+float c(float fb, float Fe) {
+  return (tan(PI * fb / Fe) - 1) / (tan(PI * fb / Fe) + 1);
+}
+
+float d(float fm, float Fe) {
+  return -cos(2 * PI * fm / Fe);
+}
+float m(int* a, int m, float Fe, int n) {
+  return a[m] * sin(2*PI*m*440*n/Fe + 7*sqrt(m)*sin(2*PI*5*n/Fe));
+}
 
 /*------------------------------------------------*/
 /* PROGRAMME PRINCIPAL   -------------------------*/                     
@@ -49,25 +60,33 @@ int main(int argc,char **argv)
   float*  SignX=LoadSignalDat("SOUND_GoodMorningVietnam",&length);
   float*  SignY=fmatrix_allocate_1d(length);
 
-
-  //--------------------------------
   //Restauration  Équation Récurente
   //--------------------------------
   // 
-  // y(n) = x(n) + G . x(n-Retard)
+  // y(n) = (1 + c)/2 * (x(n) - x(n-2)) - d*(1-c)*y(n-1) + c*y(n-2)
+  // c = tan(pi f_b/Fe) - 1 / tan(pi fb/Fe) + 1
+  // d = -cos (2pi fm/Fe)
   //
   //--------------------------------
   float SamplingRate=11025;
   float G=0.9;
-  int   Retard=2205;
+//  int   Retard=3;
+  float Fe = SamplingRate;
+  int a[] = {1,3,4};
+  float sum;
+  // figure out if m starts at 0 or starts at 1
+  for(n=0;n<length;n++) {
+    sum = 0;
 
-  for(n=0;n<length;n++)
-     {                 SignY[n]=0.0;
-                       SignY[n]+=SignX[n];
-     if (n>(Retard-1)) SignY[n]+=G*SignX[n-Retard]; }
+    for(i=0;i<3;i++) {
+      sum += m(a,i,Fe,n);
+    }
+    SignY[n] = 0.5*sum*SignX[n];
+  }
+
 
    //Sauvegarde
-   SaveSignalDatWav("SignalOut1",SignY,length,SamplingRate); 
+   SaveSignalDatWav("SignalOut9",SignY,length,SamplingRate); 
    //SaveSignalDat("SOUND_GoodMorningVietnam1",SignY,length);
  
    //Visu

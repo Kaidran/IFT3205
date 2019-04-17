@@ -1,8 +1,8 @@
 /*------------------------------------------------------*/
-/* Prog    : Tp10_IFT3205.c                              */
-/* Auteur  :                                            */
-/* Date    : --/--/2010                                 */
-/* version :                                            */ 
+/* Prog    : Tp10_IFT3205_2-2.c                         */
+/* Auteur  : Andre Lalonde - Jessica Gauvin             */
+/* Date    : 14/04/2019                                 */
+/* version : 1.0                                        */ 
 /* langage : C                                          */
 /* labo    : DIRO                                       */
 /*------------------------------------------------------*/
@@ -62,12 +62,11 @@ int main(int argc,char **argv)
   int   Retard=2205;
 
   for(n=0;n<length;n++)
-     {                 SignY[n]=0.0;
-                       SignY[n]+=SignX[n];
-     if (n>(Retard-1)) SignY[n]+=G*SignY[n-Retard]; }
+     {                 SignY[n]=SignX[n]*0.5;
+     if (n>(Retard-1)) SignY[n]+= 0.5*(G*SignY[n-Retard] + SignX[Retard]); }
 
    //Sauvegarde
-   SaveSignalDatWav("SOUND_GoodMorningVietnam1",SignY,length,SamplingRate); 
+   SaveSignalDatWav("SignalOut2",SignY,length,SamplingRate); 
    //SaveSignalDat("SOUND_GoodMorningVietnam1",SignY,length);
  
    //Visu

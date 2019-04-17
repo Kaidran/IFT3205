@@ -1,7 +1,7 @@
 /*------------------------------------------------------*/
-/* Prog    : Tp10_IFT3205_2-1.c                         */
+/* Prog    : Tp10_IFT3205_2-4.c                         */
 /* Auteur  : Andre Lalonde - Jessica Gauvin             */
-/* Date    : 08/04/2019                                 */
+/* Date    : 14/04/2019                                 */
 /* version : 1.0                                        */ 
 /* langage : C                                          */
 /* labo    : DIRO                                       */
@@ -46,28 +46,31 @@ int main(int argc,char **argv)
   //  
   //=================================================
 
-  float*  SignX=LoadSignalDat("SOUND_GoodMorningVietnam",&length);
+  //float*  SignX=LoadSignalDat("SOUND_GoodMorningVietnam",&length);
   float*  SignY=fmatrix_allocate_1d(length);
-
-
+  float*  bb=fmatrix_allocate_1d(length);
+  
+   for(n=0;n<length;n++) {
+        bb[n] = rand()/(float)RAND_MAX * 2 - 1;
+    }
   //--------------------------------
   //Restauration  Équation Récurente
   //--------------------------------
   // 
-  // y(n) = x(n) + G . x(n-Retard)
+  // y(n) = b(n) + b(n - n_0)
   //
   //--------------------------------
   float SamplingRate=11025;
   float G=0.9;
-  int   Retard=2205;
+  int   Retard=14;
 
   for(n=0;n<length;n++)
-     {                 SignY[n]=0.0;
-                       SignY[n]+=SignX[n];
-     if (n>(Retard-1)) SignY[n]+=G*SignX[n-Retard]; }
+     {                 SignY[n]= bb[n];
+     if (n>(Retard-1)) SignY[n]+= G*bb[n-Retard]; }
+
 
    //Sauvegarde
-   SaveSignalDatWav("SignalOut1",SignY,length,SamplingRate); 
+   SaveSignalDatWav("SignalOut4",SignY,length,SamplingRate); 
    //SaveSignalDat("SOUND_GoodMorningVietnam1",SignY,length);
  
    //Visu
